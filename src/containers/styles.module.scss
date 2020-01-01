@@ -2,6 +2,25 @@
   background: #3a426b;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .logo {
+    animation: logo-zoom infinite 3s linear;
+    width: 120px;
+  }
+}
+
+@keyframes logo-zoom {
+  from {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
 .app {
   font-size: 16px;
   color: white;

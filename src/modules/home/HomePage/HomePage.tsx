@@ -5,16 +5,16 @@ export const HomePage = () => {
   return (
     <div>
       <div className={styles.title}>
-        Bienvenue sur l'escape game de BaguetteTordue
+        Bienvenue sur le site de BaguetteTordue.
       </div>
 
       <div className={styles.text}>
-        Lancez le compte à rebour, et la partie commencera. Vous avez 15 minutes
-        pour arriver au bout des énigmes.
+        Le site est en construction. Mon premier projet est de réaliser un
+        escape game dans l'onglet prévu à cet effet.
       </div>
 
       <img
-        src={require("../../assets/BaguetteTordue.jpg")}
+        src={require("../../../assets/BaguetteTordue.jpg")}
         alt="BaguetteTordue"
         className={styles.image}
       />
