@@ -8,27 +8,3 @@
   text-align: center;
   padding: 20px;
 }
-
-.title {
-  font-size: 20px;
-  padding: 20px;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .logo {
-    animation: logo-zoom infinite 3s linear;
-    width: 120px;
-  }
-}
-
-@keyframes logo-zoom {
-  from {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(0.9);
-  }
-  to {
-    transform: scale(1);
-  }
-}
