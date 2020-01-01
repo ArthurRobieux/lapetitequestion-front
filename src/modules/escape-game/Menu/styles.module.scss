@@ -1,0 +1,18 @@
+.menu {
+  text-decoration: none;
+  color: white;
+  border: 1px solid white;
+  width: fit-content;
+  display: flex;
+  margin: auto;
+}
+
+.tab {
+  text-decoration: none;
+  color: white;
+  margin: 10px;
+  outline: none;
+  &:hover {
+    cursor: pointer;
+  }
+}
