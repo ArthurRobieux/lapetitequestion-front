@@ -10,16 +10,7 @@ export const App = withRouter(() => {
 
   return (
     <div className={styles.app}>
-      {SHOW_MENU && (
-        <>
-          <img
-            src={require("../assets/Mononoke.png")}
-            className={styles.logo}
-            alt="mononoke"
-          />
-          <Menu />
-        </>
-      )}
+      {SHOW_MENU && <Menu />}
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/escape-game/play/" component={EG} />

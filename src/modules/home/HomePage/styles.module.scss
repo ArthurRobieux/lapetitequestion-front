@@ -15,7 +15,7 @@
 }
 
 .colorA {
-  background: $purple;
+  background: $blue;
   color: $white;
   padding: 10px;
   border-radius: 4px;
@@ -33,7 +33,7 @@
 }
 
 .colorC {
-  background: $blue;
+  background: $purple;
   color: $white;
   padding: 10px;
   border-radius: 4px;
@@ -57,4 +57,20 @@
   border-radius: 4px;
   width: 300px;
   margin: 10px auto;
+}
+
+.colorF {
+  background: $orange;
+  color: $white;
+  padding: 10px;
+  border-radius: 4px;
+  width: 300px;
+  margin: 10px auto;
+}
+
+.icon {
+  background: $white;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 20px;
 }
