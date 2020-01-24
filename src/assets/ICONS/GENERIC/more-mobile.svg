@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg width='24px' height='24px' viewBox='0 0 24 24' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
+    <!-- Generator: Sketch 62 (91390) - https://sketch.com -->
+    <title>ICONS/GENERIC/more-mobile</title>
+    <desc>Created with Sketch.</desc>
+    <g id='ICONS/GENERIC/more-mobile' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'>
+        <path d='M4,9.5 C2.625,9.5 1.5,10.625 1.5,12 C1.5,13.375 2.625,14.5 4,14.5 C5.375,14.5 6.5,13.375 6.5,12 C6.5,10.625 5.375,9.5 4,9.5 Z M20,9.5 C18.625,9.5 17.5,10.625 17.5,12 C17.5,13.375 18.625,14.5 20,14.5 C21.375,14.5 22.5,13.375 22.5,12 C22.5,10.625 21.375,9.5 20,9.5 Z M12,9.5 C10.625,9.5 9.5,10.625 9.5,12 C9.5,13.375 10.625,14.5 12,14.5 C13.375,14.5 14.5,13.375 14.5,12 C14.5,10.625 13.375,9.5 12,9.5 Z' id='ICONS/more' fill='#8C929A' transform='translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) '></path>
+    </g>
+</svg>

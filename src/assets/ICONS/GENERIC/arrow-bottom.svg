@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg width='24px' height='24px' viewBox='0 0 24 24' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
+    <!-- Generator: Sketch 62 (91390) - https://sketch.com -->
+    <title>ICONS/GENERIC/arrow-bottom</title>
+    <desc>Created with Sketch.</desc>
+    <g id='ICONS/GENERIC/arrow-bottom' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'>
+        <path d='M4.86518982,12.3146 C4.37827006,11.8643186 4.37827006,11.136851 4.86518982,10.6854 L16.4214186,-0.0114154139 C17.124331,-0.662861529 18.2679682,-0.662861529 18.972129,-0.0114154139 C19.6750414,0.640030701 19.6750414,1.69731488 18.972129,2.348761 L9.08640953,11.5005848 L18.972129,20.6500694 C19.6750414,21.3026851 19.6750414,22.3599693 18.972129,23.0114154 C18.2679682,23.6628615 17.124331,23.6628615 16.4214186,23.0114154 L4.86518982,12.3146 Z' id='ICONS/arrow-bottom' fill='#8C929A' transform='translate(12.000000, 11.500000) rotate(-90.000000) translate(-12.000000, -11.500000) '></path>
+    </g>
+</svg>
