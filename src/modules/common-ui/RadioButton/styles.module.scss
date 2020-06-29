@@ -1,0 +1,48 @@
+@import "../vars.scss";
+
+.simpleRadioButtonContainer {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.radioButton {
+  position: relative;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    background: #fff;
+    border-radius: 50px;
+    border: 2px solid #c4c9d0;
+  }
+}
+
+.radioButtonActive {
+  &:before {
+    background: $secondary;
+    border: 0;
+  }
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 8px;
+    height: 8px;
+    z-index: 2;
+    background: #fff;
+    border-radius: 50px;
+  }
+}

@@ -1,0 +1,73 @@
+@import "../../common-ui/vars.scss";
+
+.pollTitle {
+  font-size: 20px;
+  width: 50%;
+  @include for-mobile-only {
+    width: 95%;
+  }
+}
+
+.pollDescription {
+  color: #8c929a;
+  font-size: 16px;
+  margin: 5px 0 10px 0;
+  width: 50%;
+  @include for-mobile-only {
+    width: 95%;
+  }
+}
+
+.pollSeparator {
+  height: 1px;
+  background: #c4c9d0;
+  width: 40%;
+  margin: 20px auto 0;
+}
+
+.questionContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.questionNumber {
+  color: #8c929a;
+  font-size: 20px;
+}
+
+.question {
+  font-size: 24px;
+  margin: 20px;
+  width: 50%;
+  @include for-mobile-only {
+    width: 95%;
+  }
+}
+
+.choices {
+  width: 50%;
+  @include for-mobile-only {
+    width: 95%;
+  }
+}
+
+.choice {
+  border-radius: 4px;
+  background: #fff;
+  padding: 20px;
+  width: 75%;
+  margin: 0 auto 20px;
+  box-shadow: 0px 5px 10px -5px #aaa;
+  box-sizing: border-box;
+  text-align: left;
+  transition-duration: 0.3s;
+  @include for-mobile-only {
+    width: 95%;
+  }
+  &:hover {
+    cursor: pointer;
+    opacity: 0.5;
+  }
+}

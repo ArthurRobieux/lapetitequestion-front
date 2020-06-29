@@ -1,8 +1,10 @@
+@import "../vars.scss";
+
 .button {
   height: 44px;
   border-radius: 4px;
-  background: white;
-  color: black;
+  background: $secondary;
+  color: white;
   font-size: 16px;
   outline: none;
   align-items: center;
@@ -11,10 +13,28 @@
   min-width: 100px;
   max-width: 150px;
   text-decoration: none;
-  font-family: auto;
   padding: 0 10px;
+  margin: 10px 0;
+  border: none;
+  transition-duration: 0.3s;
   &:hover {
     opacity: 0.8;
     cursor: pointer;
   }
+}
+
+.invert {
+  background: #fff;
+  border: 1px solid $secondary;
+  color: $secondary;
+}
+
+.maxWidth {
+  min-width: 100%;
+  max-width: 100%;
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }

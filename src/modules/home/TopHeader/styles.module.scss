@@ -1,0 +1,24 @@
+@import "../../common-ui/vars.scss";
+
+.menu {
+  text-decoration: none;
+  color: white;
+  padding: 20px 70px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  @include for-mobile-only {
+    padding: 10px;
+  }
+}
+
+.navlink {
+  text-decoration: none;
+  color: white;
+  margin: 10px;
+}
+
+.tabs {
+  display: flex;
+  align-items: center;
+}

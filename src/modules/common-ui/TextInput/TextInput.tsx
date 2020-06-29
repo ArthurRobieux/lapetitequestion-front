@@ -1,22 +1,31 @@
 import React from "react";
+import classnames from "classnames";
 
 import styles from "./styles.module.scss";
 
 export type TextInputProps = {
   value: string;
   onChange: (e: any) => void;
-  description: string;
+  description?: string;
+  noBorder?: boolean;
 };
 
-export const TextInput = ({ value, onChange, description }: TextInputProps) => {
+export const TextInput = ({
+  value,
+  onChange,
+  description,
+  noBorder,
+}: TextInputProps) => {
   return (
     <div className={styles.textInputContainer}>
-      <div className={styles.description}>{description}</div>
+      {description && <div className={styles.description}>{description}</div>}
       <input
-        className={styles.textInput}
+        className={classnames(styles.textInput, {
+          [styles.noBorder]: noBorder,
+        })}
         type="text"
         value={value}
-        onChange={evt => onChange(evt)}
+        onChange={(evt) => onChange(evt)}
       />
     </div>
   );

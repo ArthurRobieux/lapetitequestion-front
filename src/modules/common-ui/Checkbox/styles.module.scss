@@ -1,0 +1,60 @@
+@import "../vars.scss";
+
+.checkbox {
+  position: relative;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  min-height: 18px;
+  z-index: 0;
+  margin-right: 10px;
+  &:hover {
+    cursor: pointer;
+  }
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    background: #fff;
+    border-radius: 4px;
+    border: 2px solid #c4c9d0;
+    pointer-events: none;
+  }
+}
+
+.checkboxActive {
+  &:before {
+    background: $secondary;
+    border: 0;
+  }
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 7px;
+    height: 4px;
+    transform: rotate(-45deg);
+    z-index: 2;
+    border-left: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    pointer-events: none;
+  }
+}
+
+.checkboxInput {
+  width: 18px;
+  height: 18px;
+  opacity: 0;
+}
+
+.checkboxInput:hover {
+  cursor: pointer;
+}

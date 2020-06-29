@@ -1,5 +1,12 @@
+@import "../modules/common-ui/vars.scss";
+
+@font-face {
+  font-family: AeonikRegular;
+  src: url("../assets/fonts/Aeonik_Regular.otf");
+}
+
 :global(body) {
-  background: #3a426b;
+  font-family: AeonikRegular;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -25,5 +32,29 @@
   font-size: 16px;
   color: white;
   text-align: center;
-  padding: 20px;
+  position: relative;
+}
+
+.arrow {
+  position: absolute;
+  top: 450px;
+  left: 20px;
+  width: 300px;
+  @include for-mobile-only {
+    width: 150px;
+    top: 375px;
+  }
+}
+
+.field {
+  position: absolute;
+  width: 400px;
+  opacity: 0.2;
+  right: 20px;
+  top: 325px;
+  @include for-mobile-only {
+    right: 0;
+    width: 120px;
+    top: 350px;
+  }
 }

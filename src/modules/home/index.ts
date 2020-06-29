@@ -1,3 +1,3 @@
 export { HomePage } from "./HomePage";
-export { Menu } from "./Menu";
-export { EscapeGame } from "./EscapeGame";
+export { TopHeader } from "./TopHeader";
+export { Help } from "./Help";

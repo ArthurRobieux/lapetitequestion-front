@@ -1,0 +1,19 @@
+@import "../vars.scss";
+
+.mainTitle {
+  color: #fff;
+  font-size: 24px;
+  margin: 0 0 10px 0;
+  -webkit-font-smoothing: auto;
+  > a {
+    color: $secondary;
+    text-decoration: none;
+  }
+}
+
+.subTitle {
+  color: $secondary;
+  display: inline;
+  font-weight: 500;
+  -webkit-font-smoothing: auto;
+}
