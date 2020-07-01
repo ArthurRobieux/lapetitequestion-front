@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 
 import styles from "./styles.module.scss";
-import { Button } from "../../../common-ui";
+import { Button, Loader } from "../../../common-ui";
 import logoSportEasy from "../../../../assets/img/logoSportEasy.svg";
 import { NavLink } from "react-router-dom";
-import { Question } from "./Question";
+import { Question } from "../../components/Question";
+import { SharingModal } from "../../components/SharingModal";
 
 export const PollCreate = () => {
   const [form, setForm] = useState({
@@ -12,6 +13,17 @@ export const PollCreate = () => {
     description: "",
     questions: [""],
   });
+  const [loading, setLoading] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const onSubmit = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setModalIsOpen(true);
+    }, 1500);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -60,8 +72,19 @@ export const PollCreate = () => {
       </div>
 
       <div className={styles.submitContainer}>
-        <Button description="Créer le sondage" />
+        <Button
+          description="Créer le sondage"
+          disabled={loading}
+          onClick={() => onSubmit()}
+        />
+        {loading && (
+          <div className={styles.loaderContainer}>
+            <Loader />
+          </div>
+        )}
       </div>
+
+      <SharingModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
     </div>
   );
 };

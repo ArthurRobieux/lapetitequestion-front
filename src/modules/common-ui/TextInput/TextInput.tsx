@@ -8,6 +8,8 @@ export type TextInputProps = {
   onChange: (e: any) => void;
   description?: string;
   noBorder?: boolean;
+  maxWidth?: boolean;
+  placeholder?: string;
 };
 
 export const TextInput = ({
@@ -15,6 +17,8 @@ export const TextInput = ({
   onChange,
   description,
   noBorder,
+  maxWidth,
+  placeholder,
 }: TextInputProps) => {
   return (
     <div className={styles.textInputContainer}>
@@ -22,10 +26,12 @@ export const TextInput = ({
       <input
         className={classnames(styles.textInput, {
           [styles.noBorder]: noBorder,
+          [styles.maxWidth]: maxWidth,
         })}
         type="text"
         value={value}
         onChange={(evt) => onChange(evt)}
+        placeholder={placeholder}
       />
     </div>
   );

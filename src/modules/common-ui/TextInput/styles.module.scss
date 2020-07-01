@@ -10,7 +10,7 @@
 }
 
 .textInput {
-  height: 44px;
+  height: 38px;
   border-radius: 4px;
   border: 1px solid #c4c9d0;
   padding: 10px;
@@ -27,4 +27,8 @@
   &:focus {
     border: none;
   }
+}
+
+.maxWidth {
+  width: 100%;
 }

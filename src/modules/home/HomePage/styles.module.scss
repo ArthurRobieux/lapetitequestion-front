@@ -53,6 +53,7 @@
 .preview {
   width: calc(100% - 100px);
   margin: 50px;
+  border-radius: 4px;
   @include for-mobile-only {
     width: calc(100% - 20px);
     margin: 10px;

@@ -29,7 +29,7 @@ export const Poll = ({ match }: RouteComponentProps<{ id: string }>) => {
   useEffect(() => {
     const f = form;
     if (pollData) {
-      pollData.questions.map((question) => {
+      pollData.questions.forEach((question) => {
         if (question.type === "text")
           f.questions.push({ id: question.id, text: "" });
         else f.questions.push({ id: question.id, choice_ids: [] });
