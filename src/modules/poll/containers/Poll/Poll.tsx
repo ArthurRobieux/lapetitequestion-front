@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { RouteComponentProps } from "react-router-dom";
 
-import styles from "./styles.module.scss";
 import { Button } from "../../../common-ui";
 import {
   poll_1,
@@ -10,10 +9,14 @@ import {
   ApiPollAnswer,
 } from "../../../api-client/mocks";
 
+import resume from "../../../../assets/img/resume.svg";
+
 import { PollLayout } from "../PollLayout";
 import { TextInput } from "../../../common-ui";
 import { Choice } from "../../components/Choice";
 import { ProgressBar } from "../../components/ProgressBar";
+
+import styles from "./styles.module.scss";
 
 export const Poll = ({ match }: RouteComponentProps<{ id: string }>) => {
   let pollData = null as ApiPoll | null;
@@ -67,7 +70,7 @@ export const Poll = ({ match }: RouteComponentProps<{ id: string }>) => {
         <Button
           description="Voir les résultats"
           to={`/poll/${match.params.id}/results/`}
-          invert
+          nude
         />
       </PollLayout>
     );
@@ -132,6 +135,7 @@ export const Poll = ({ match }: RouteComponentProps<{ id: string }>) => {
       ) : (
         <div className={styles.questionContainer}>
           Bravo, tu as fini le sondage
+          <img src={resume} alt="icon" className={styles.icon} />
           {console.log("form", form)}
           <Button description="Retour à l'accueil" to="/" />
         </div>

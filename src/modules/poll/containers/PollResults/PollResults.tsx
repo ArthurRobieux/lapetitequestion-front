@@ -51,10 +51,12 @@ export const PollResults = ({ match }: RouteComponentProps<{ id: string }>) => {
           </div>
         ))}
       </div>
-      <Button
-        description="Retour au sondage"
-        to={`/poll/${match.params.id}/`}
-      />
+      <div className={styles.button}>
+        <Button
+          description="Retour au sondage"
+          to={`/poll/${match.params.id}/`}
+        />
+      </div>
     </PollLayout>
   );
 };

@@ -6,3 +6,4 @@ export { TextInput } from "./TextInput";
 export { Loader } from "./Loader";
 export { Modal } from "./Modal";
 export { SelectInput } from "./SelectInput";
+export { CopyText } from "./CopyText";

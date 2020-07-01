@@ -1,0 +1,54 @@
+@import "../vars.scss";
+
+.copyCode {
+  color: $gray;
+  margin-bottom: 5px;
+}
+
+.tokenContainer {
+  background: rgba($primary-raw, 0.1);
+  border: 1px dashed $gray;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 15px;
+  min-height: 38px;
+  min-width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.token {
+  font-size: 20px;
+  font-weight: bold;
+  -webkit-font-smoothing: auto;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.buttonContainer {
+  border-left: 1px solid $gray;
+  min-width: 75px;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+}
+
+.copied {
+  color: $gray;
+  font-size: 14px;
+  margin: auto;
+}
+
+.nude {
+  background: #fff;
+}
+
+.fontWeightNormal {
+  font-weight: normal;
+  font-size: 14px;
+}

@@ -21,7 +21,7 @@ export const PollCreate = () => {
     setTimeout(() => {
       setLoading(false);
       setModalIsOpen(true);
-    }, 1500);
+    }, 1000);
   };
 
   return (

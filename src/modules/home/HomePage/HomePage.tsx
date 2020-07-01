@@ -6,7 +6,7 @@ import Preview from "../../../assets/img/Preview.png";
 export const HomePage = () => {
   return (
     <div className={styles.container}>
-      <div className={styles.title}>Créer ton sondage</div>
+      <div className={styles.title}>Crée ton sondage</div>
       <div className={styles.motto}>" La question elle est vite répondue "</div>
       <a
         href="https://www.youtube.com/watch?v=8VSFjyF3B5E"
