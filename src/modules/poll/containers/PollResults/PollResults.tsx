@@ -2,8 +2,8 @@ import React from "react";
 import { RouteComponentProps } from "react-router-dom";
 
 // import styles from "./styles.module.scss";
-import { Button } from "../../common-ui";
-import { poll_results_1, poll_results_2 } from "../../api-client/mocks";
+import { Button } from "../../../common-ui";
+import { poll_results_1, poll_results_2 } from "../../../api-client/mocks";
 
 import { PollLayout } from "../PollLayout";
 

@@ -11,6 +11,7 @@ export type ButtonProps = {
   invert?: boolean;
   maxWidth?: boolean;
   disabled?: boolean;
+  nude?: boolean;
 };
 
 export const Button = ({
@@ -20,6 +21,7 @@ export const Button = ({
   invert,
   maxWidth,
   disabled,
+  nude,
 }: ButtonProps) => {
   if (onClick) {
     return (
@@ -30,6 +32,7 @@ export const Button = ({
           [styles.invert]: invert,
           [styles.maxWidth]: maxWidth,
           [styles.disabled]: disabled,
+          [styles.nude]: nude,
         })}
       >
         {description}
@@ -43,6 +46,7 @@ export const Button = ({
           [styles.invert]: invert,
           [styles.maxWidth]: maxWidth,
           [styles.disabled]: disabled,
+          [styles.nude]: nude,
         })}
       >
         {description}

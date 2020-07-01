@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 import styles from "./styles.module.scss";
-import { Button } from "../../common-ui";
-import logoSportEasy from "../../../assets/img/logoSportEasy.svg";
+import { Button } from "../../../common-ui";
+import logoSportEasy from "../../../../assets/img/logoSportEasy.svg";
 import { NavLink } from "react-router-dom";
 import { Question } from "./Question";
 

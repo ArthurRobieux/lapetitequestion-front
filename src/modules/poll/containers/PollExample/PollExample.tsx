@@ -1,7 +1,7 @@
 import React from "react";
 
 import styles from "./styles.module.scss";
-import { Title } from "../../common-ui";
+import { Title } from "../../../common-ui";
 import { NavLink } from "react-router-dom";
 
 export const PollExample = () => {

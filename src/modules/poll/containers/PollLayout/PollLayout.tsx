@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 import styles from "./styles.module.scss";
 
-import logoSportEasy from "../../../assets/img/logoSportEasyBlue.svg";
+import logoSportEasy from "../../../../assets/img/logoSportEasyBlue.svg";
 
 export type PollLayoutProps = { children: ReactNode };
 

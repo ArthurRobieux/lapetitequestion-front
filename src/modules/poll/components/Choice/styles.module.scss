@@ -1,0 +1,22 @@
+@import "../../../common-ui/vars.scss";
+
+.choice {
+  border-radius: 4px;
+  background: #fff;
+  padding: 20px;
+  width: 75%;
+  margin: 0 auto 20px;
+  box-shadow: 0px 5px 10px -5px #aaa;
+  box-sizing: border-box;
+  text-align: left;
+  transition-duration: 0.3s;
+  display: flex;
+  align-items: center;
+  @include for-mobile-only {
+    width: 95%;
+  }
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+}

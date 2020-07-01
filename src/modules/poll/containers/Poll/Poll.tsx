@@ -2,11 +2,18 @@ import React, { useState, useEffect } from "react";
 import { RouteComponentProps } from "react-router-dom";
 
 import styles from "./styles.module.scss";
-import { Button } from "../../common-ui";
-import { poll_1, poll_2, ApiPoll, ApiPollAnswer } from "../../api-client/mocks";
+import { Button } from "../../../common-ui";
+import {
+  poll_1,
+  poll_2,
+  ApiPoll,
+  ApiPollAnswer,
+} from "../../../api-client/mocks";
 
 import { PollLayout } from "../PollLayout";
-import { TextInput, Checkbox, RadioButton } from "../../common-ui";
+import { TextInput } from "../../../common-ui";
+import { Choice } from "../../components/Choice";
+import { ProgressBar } from "../../components/ProgressBar";
 
 export const Poll = ({ match }: RouteComponentProps<{ id: string }>) => {
   let pollData = null as ApiPoll | null;
@@ -79,56 +86,13 @@ export const Poll = ({ match }: RouteComponentProps<{ id: string }>) => {
           <div className={styles.choices}>
             {pollData.questions[currentQuestion].choices.map((choice) => (
               <>
-                <div
-                  className={styles.choice}
-                  onClick={() => {
-                    const f = { ...form };
-
-                    if (
-                      pollData!.questions[currentQuestion].type ===
-                      "single_choice"
-                    ) {
-                      f.questions[currentQuestion].choice_ids = [];
-                    }
-
-                    if (
-                      f.questions[currentQuestion].choice_ids!.includes(
-                        choice.id
-                      )
-                    ) {
-                      const index = f.questions[
-                        currentQuestion
-                      ].choice_ids!.indexOf(choice.id);
-                      if (index > -1) {
-                        f.questions[currentQuestion].choice_ids!.splice(
-                          index,
-                          1
-                        );
-                      }
-                    } else {
-                      f.questions[currentQuestion].choice_ids!.push(choice.id);
-                    }
-                    setForm(f);
-                  }}
-                >
-                  {pollData!.questions[currentQuestion].type ===
-                    "multiple_choices" && (
-                    <Checkbox
-                      checked={form.questions[
-                        currentQuestion
-                      ].choice_ids!.includes(choice.id)}
-                    />
-                  )}
-                  {pollData!.questions[currentQuestion].type ===
-                    "single_choice" && (
-                    <RadioButton
-                      checked={form.questions[
-                        currentQuestion
-                      ].choice_ids!.includes(choice.id)}
-                    />
-                  )}
-                  {choice.description}
-                </div>
+                <Choice
+                  form={form}
+                  setForm={setForm}
+                  pollData={pollData!}
+                  choice={choice}
+                  currentQuestion={currentQuestion}
+                />
               </>
             ))}
           </div>
@@ -144,9 +108,25 @@ export const Poll = ({ match }: RouteComponentProps<{ id: string }>) => {
               placeholder="Réponse..."
             />
           )}
-          <Button
-            description="Continuer"
-            onClick={() => setCurrentQuestion(currentQuestion + 1)}
+
+          <div className={styles.buttons}>
+            {currentQuestion > 0 && (
+              <div className={styles.previousButton}>
+                <Button
+                  description="< Précédent"
+                  onClick={() => setCurrentQuestion(currentQuestion - 1)}
+                  nude
+                />
+              </div>
+            )}
+            <Button
+              description="Continuer"
+              onClick={() => setCurrentQuestion(currentQuestion + 1)}
+            />
+          </div>
+          <ProgressBar
+            value={currentQuestion + 1}
+            total={pollData.questions.length}
           />
         </div>
       ) : (

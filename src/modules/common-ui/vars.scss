@@ -1,6 +1,14 @@
 $primary: #030e2f;
 $secondary: #63c37b;
 
+$white: #ffffff;
+$gray-extra-lighter: #f7f7f7;
+$gray-extra-light: #edf0f3;
+$gray-lighter: #dadfe6;
+$gray-light: #c4c9d0;
+$gray: #8c929a;
+$black: #393939;
+
 $responsive-width: 1024px;
 
 @mixin for-mobile-only {
