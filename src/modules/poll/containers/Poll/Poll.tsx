@@ -80,12 +80,6 @@ export const Poll = ({ match }: RouteComponentProps<{ id: string }>) => {
               onClick={() => setCurrentQuestion(0)}
               disabled={!form.name}
             />
-            <div className={styles.pollSeparator} />
-            <Button
-              description="Voir les résultats"
-              to={`/poll/${match.params.id}/results/`}
-              nude
-            />
           </div>
         </div>
       </div>
