@@ -66,7 +66,7 @@ export const poll_1: ApiPoll = {
     },
     {
       id: 3,
-      description: "Quel numéro veux tu sur ton maillot ?",
+      description: "Quel numéro de maillot souhaites-tu ?",
       type: "text",
       choices: [],
     },
@@ -230,7 +230,7 @@ export const poll_results_1: ApiPollResults = {
     },
     {
       id: 3,
-      description: "Quel numéro veux tu sur ton maillot ?",
+      description: "Quel numéro de maillot souhaites-tu ?",
       type: "text",
       answers: [
         { name: "Arthur", text: "23" },

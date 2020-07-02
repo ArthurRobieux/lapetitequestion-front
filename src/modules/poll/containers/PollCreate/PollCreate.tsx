@@ -66,7 +66,14 @@ export const PollCreate = () => {
         </div>
         {form.questions.map((_, index) => (
           <div className={styles.block}>
-            <Question index={index + 1} />
+            <Question
+              index={index + 1}
+              onDelete={() => {
+                const newQuestions = [...form.questions];
+                newQuestions.splice(index, 1);
+                setForm({ ...form, questions: newQuestions });
+              }}
+            />
           </div>
         ))}
         <div className={styles.addButtonContainer}>

@@ -5,12 +5,13 @@ import {
   Button,
   RadioButton,
   Checkbox,
+  DeleteButton,
 } from "../../../common-ui";
 import styles from "./styles.module.scss";
 
-export type QuestionProps = { index: number };
+export type QuestionProps = { index: number; onDelete: () => void };
 
-export const Question = ({ index }: QuestionProps) => {
+export const Question = ({ index, onDelete }: QuestionProps) => {
   const [form, setForm] = useState({
     type: { value: "single_choices", label: "Choix simple" },
     description: "",
@@ -83,6 +84,11 @@ export const Question = ({ index }: QuestionProps) => {
             onClick={() => setForm({ ...form, choices: [...form.choices, ""] })}
             nude
           />
+        </div>
+      )}
+      {index > 1 && (
+        <div className={styles.actions}>
+          <DeleteButton action={() => onDelete()} />
         </div>
       )}
     </div>
