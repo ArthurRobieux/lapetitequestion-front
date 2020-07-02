@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { RouteComponentProps } from "react-router-dom";
+import { RouteComponentProps, NavLink } from "react-router-dom";
 
 import { Button } from "../../../common-ui";
 import {
@@ -9,7 +9,8 @@ import {
   ApiPollAnswer,
 } from "../../../api-client/mocks";
 
-import resume from "../../../../assets/img/resume.svg";
+import cristiano from "../../../../assets/img/cristiano.jpg";
+import logoSportEasy from "../../../../assets/img/logoSportEasy.svg";
 
 import { PollLayout } from "../PollLayout";
 import { TextInput } from "../../../common-ui";
@@ -52,27 +53,42 @@ export const Poll = ({ match }: RouteComponentProps<{ id: string }>) => {
 
   if (currentQuestion === -1)
     return (
-      <PollLayout>
-        <div className={styles.pollTitle}>{pollData.title}</div>
-        <div className={styles.pollDescription}>{pollData.description}</div>
-        <div className={styles.pollSeparator} />
-        <TextInput
-          description="Ton nom *"
-          value={form.name}
-          onChange={(evt) => setForm({ ...form, name: evt.target.value })}
-        />
-        <Button
-          description="C'est parti !"
-          onClick={() => setCurrentQuestion(0)}
-          disabled={!form.name}
-        />
-        <div className={styles.pollSeparator} />
-        <Button
-          description="Voir les résultats"
-          to={`/poll/${match.params.id}/results/`}
-          nude
-        />
-      </PollLayout>
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <NavLink to="/">
+            <img src={logoSportEasy} alt="logo" />
+          </NavLink>
+        </div>
+        <div className={styles.formContainer}>
+          <div className={styles.block}>
+            <div className={styles.hello}>Bonjour</div>
+            <div className={styles.description}>
+              Tu es invité à participer au sondage, il ne prendra que quelques
+              minutes :
+            </div>
+
+            <div className={styles.pollTitle}>" {pollData.title} "</div>
+            <div className={styles.pollDescription}>{pollData.description}</div>
+            <div className={styles.pollSeparator} />
+            <div>Entre ton nom pour commencer : </div>
+            <TextInput
+              value={form.name}
+              onChange={(evt) => setForm({ ...form, name: evt.target.value })}
+            />
+            <Button
+              description="C'est parti !"
+              onClick={() => setCurrentQuestion(0)}
+              disabled={!form.name}
+            />
+            <div className={styles.pollSeparator} />
+            <Button
+              description="Voir les résultats"
+              to={`/poll/${match.params.id}/results/`}
+              nude
+            />
+          </div>
+        </div>
+      </div>
     );
 
   return (
@@ -134,10 +150,20 @@ export const Poll = ({ match }: RouteComponentProps<{ id: string }>) => {
         </div>
       ) : (
         <div className={styles.questionContainer}>
-          Bravo, tu as fini le sondage
-          <img src={resume} alt="icon" className={styles.icon} />
+          <div className={styles.thanks}>
+            Merci d'avoir répondu à ce sondage !
+          </div>
+          <img src={cristiano} alt="icon" className={styles.cristiano} />
           {console.log("form", form)}
           <Button description="Retour à l'accueil" to="/" />
+          <a
+            className={styles.more}
+            href="https://www.sporteasy.net"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            En savoir plus sur SportEasy
+          </a>
         </div>
       )}
     </PollLayout>

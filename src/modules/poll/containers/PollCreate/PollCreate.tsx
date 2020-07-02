@@ -9,6 +9,7 @@ import { SharingModal } from "../../components/SharingModal";
 
 export const PollCreate = () => {
   const [form, setForm] = useState({
+    email: "",
     title: "",
     description: "",
     questions: [""],
@@ -44,7 +45,16 @@ export const PollCreate = () => {
               onChange={(evt) => setForm({ ...form, title: evt.target.value })}
             />
           </div>
+          <div className={styles.emailContainer}>
+            <div className={styles.emailLabel}>Ton email : </div>
 
+            <input
+              className={styles.emailInput}
+              type="text"
+              value={form.email}
+              onChange={(evt) => setForm({ ...form, email: evt.target.value })}
+            />
+          </div>
           <textarea
             className={styles.textAreaInput}
             value={form.description}
