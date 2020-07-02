@@ -141,6 +141,11 @@ export const Poll = ({ match }: RouteComponentProps<{ id: string }>) => {
             <Button
               description="Continuer"
               onClick={() => setCurrentQuestion(currentQuestion + 1)}
+              disabled={
+                form.questions[currentQuestion].choice_ids
+                  ? !form.questions[currentQuestion].choice_ids!.length
+                  : !form.questions[currentQuestion].text
+              }
             />
           </div>
           <ProgressBar
