@@ -43,7 +43,7 @@ export const poll_1: ApiPoll = {
   questions: [
     {
       id: 1,
-      description: "Quel est ta taille de maillot ?",
+      description: "Quelle est ta taille de maillot ?",
       type: "single_choice",
       choices: [
         { id: 1, description: "XS" },
@@ -97,7 +97,7 @@ export const poll_results_1: ApiPollResults = {
   questions: [
     {
       id: 1,
-      description: "Quel est ta taille de maillot ?",
+      description: "Quelle est ta taille de maillot ?",
       type: "single_choice",
       answers: [
         { name: "Arthur", choices: [{ id: 3, description: "M" }] },
