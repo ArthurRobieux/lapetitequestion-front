@@ -12,6 +12,11 @@
   }
 }
 
+.logoNavlink {
+  text-decoration: none;
+  color: white;
+}
+
 .navlink {
   text-decoration: none;
   color: white;
@@ -21,4 +26,8 @@
 .tabs {
   display: flex;
   align-items: center;
+}
+
+.logo {
+  width: 120px;
 }

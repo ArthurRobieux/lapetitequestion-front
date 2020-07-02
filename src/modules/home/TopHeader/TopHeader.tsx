@@ -6,7 +6,7 @@ import styles from "./styles.module.scss";
 export const TopHeader = () => {
   return (
     <div className={styles.menu}>
-      <NavLink className={styles.navlink} to="/">
+      <NavLink className={styles.logoNavLink} to="/">
         <img src={logoSportEasy} alt="logo" />
       </NavLink>
       <div className={styles.tabs}>
