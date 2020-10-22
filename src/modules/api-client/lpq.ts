@@ -7,4 +7,6 @@ export const lpqRessource = (fetchApi: ReturnType<FetchApi>) => ({
     fetchApi.get(`polls/${params.id}/`),
   createPoll: (params: { payload: ApiPollCreatePayload }) =>
     fetchApi.post(`polls/`, params.payload),
+  deletePoll: (params: { id: number }) =>
+    fetchApi.delete(`polls/${params.id}/`),
 });

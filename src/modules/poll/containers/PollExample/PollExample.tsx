@@ -8,24 +8,37 @@ import { ApiPollList } from "../../../api-client/mocks";
 
 export const PollExample = () => {
   const [polls, setPolls] = useState([] as ApiPollList);
-  useEffect(() => {
+
+  const onFetchData = () => {
     apiClient.lpq.getPolls().then((response) => setPolls(response));
+  };
+
+  useEffect(() => {
+    onFetchData();
   }, []);
+
+  const onDelete = (id: number) => {
+    apiClient.lpq.deletePoll({ id }).then(() => onFetchData());
+  };
 
   return (
     <div className={styles.container}>
-      <Title>Exemples de sondage</Title>
-      <NavLink to="/poll/1/" className={styles.example}>
-        Exemple 1
-      </NavLink>
-      <NavLink to="/poll/2/" className={styles.example}>
-        Exemple 2
-      </NavLink>
+      <Title>Liste des sondages</Title>
 
       {polls.map((poll) => (
-        <NavLink to={`/poll/${poll.id}/`} className={styles.example}>
-          {poll.title}
-        </NavLink>
+        <div className={styles.poll}>
+          <NavLink to={`/poll/${poll.id}/`} className={styles.example}>
+            {poll.title}
+          </NavLink>
+          <span
+            className={styles.delete}
+            onClick={() => onDelete(poll.id)}
+            role="button"
+            tabIndex={0}
+          >
+            X
+          </span>
+        </div>
       ))}
     </div>
   );

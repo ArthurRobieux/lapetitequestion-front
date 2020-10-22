@@ -6,7 +6,23 @@
   align-items: center;
 }
 
+.poll {
+  margin: 5px 0;
+}
+
 .example {
   color: $secondary;
   text-decoration: none;
+}
+
+.delete {
+  color: red;
+  font-weight: bold;
+  margin-left: 10px;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    cursor: pointer;
+  }
 }
