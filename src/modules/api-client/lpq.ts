@@ -1,9 +1,10 @@
 import { FetchApi } from "./utils";
-import { ApiPoll } from "./mocks";
+import { ApiPoll, ApiPollList, ApiPollCreatePayload } from "./mocks";
 
 export const lpqRessource = (fetchApi: ReturnType<FetchApi>) => ({
-  getPolls: () => fetchApi.get(`polls/`),
-  getPoll: (params: { id: string }) => fetchApi.get(`polls/${params.id}/`),
-  createPoll: (params: { payload: ApiPoll }) =>
+  getPolls: (): Promise<ApiPollList> => fetchApi.get(`polls/`),
+  getPoll: (params: { id: string }): Promise<ApiPoll> =>
+    fetchApi.get(`polls/${params.id}/`),
+  createPoll: (params: { payload: ApiPollCreatePayload }) =>
     fetchApi.post(`polls/`, params.payload),
 });

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import * as R from "ramda";
 
 import styles from "./styles.module.scss";
 import { Button, Loader } from "../../../common-ui";
@@ -6,23 +7,40 @@ import logoSportEasy from "../../../../assets/img/logoSportEasy.svg";
 import { NavLink } from "react-router-dom";
 import { Question } from "../../components/Question";
 import { SharingModal } from "../../components/SharingModal";
+import { apiClient } from "../../../api-client";
+import {
+  ApiPollCreatePayload,
+  ApiQuestionPayload,
+} from "../../../api-client/mocks";
 
 export const PollCreate = () => {
   const [form, setForm] = useState({
     email: "",
     title: "",
     description: "",
-    questions: [""],
-  });
+    questions: [
+      {
+        description: "",
+        question_type: "single_choice",
+        choices: [{ description: "" }],
+      },
+    ],
+  } as ApiPollCreatePayload);
   const [loading, setLoading] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const onSubmit = () => {
+    console.log("form", form);
+
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setModalIsOpen(true);
-    }, 1000);
+
+    apiClient.lpq
+      .createPoll({ payload: form })
+      .then(() => {
+        setLoading(false);
+        setModalIsOpen(true);
+      })
+      .catch(() => setLoading(false));
   };
 
   return (
@@ -64,7 +82,7 @@ export const PollCreate = () => {
             placeholder="Ajouter une description"
           />
         </div>
-        {form.questions.map((_, index) => (
+        {form.questions.map((question, index) => (
           <div className={styles.block}>
             <Question
               index={index + 1}
@@ -73,6 +91,13 @@ export const PollCreate = () => {
                 newQuestions.splice(index, 1);
                 setForm({ ...form, questions: newQuestions });
               }}
+              question={question}
+              setQuestion={(evt: ApiQuestionPayload) =>
+                setForm({
+                  ...form,
+                  questions: R.assocPath([index], evt, form.questions),
+                })
+              }
             />
           </div>
         ))}
@@ -80,7 +105,17 @@ export const PollCreate = () => {
           <Button
             description="+ Ajouter une question"
             onClick={() =>
-              setForm({ ...form, questions: [...form.questions, ""] })
+              setForm({
+                ...form,
+                questions: [
+                  ...form.questions,
+                  {
+                    description: "",
+                    question_type: "single_choice",
+                    choices: [{ description: "" }],
+                  },
+                ],
+              })
             }
             invert
             maxWidth

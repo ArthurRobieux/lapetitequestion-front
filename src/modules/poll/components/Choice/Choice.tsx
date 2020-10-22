@@ -27,7 +27,9 @@ export const Choice = ({
       onClick={() => {
         const f = { ...form };
 
-        if (pollData!.questions[currentQuestion].type === "single_choice") {
+        if (
+          pollData!.questions[currentQuestion].question_type === "single_choice"
+        ) {
           f.questions[currentQuestion].choice_ids = [];
         }
 
@@ -44,14 +46,16 @@ export const Choice = ({
         setForm(f);
       }}
     >
-      {pollData!.questions[currentQuestion].type === "multiple_choices" && (
+      {pollData!.questions[currentQuestion].question_type ===
+        "multiple_choices" && (
         <Checkbox
           checked={form.questions[currentQuestion].choice_ids!.includes(
             choice.id
           )}
         />
       )}
-      {pollData!.questions[currentQuestion].type === "single_choice" && (
+      {pollData!.questions[currentQuestion].question_type ===
+        "single_choice" && (
         <RadioButton
           checked={form.questions[currentQuestion].choice_ids!.includes(
             choice.id

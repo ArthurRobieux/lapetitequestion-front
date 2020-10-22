@@ -1,14 +1,32 @@
 // TYPES
 
+export type ApiPollCreatePayload = {
+  title: string;
+  email: string;
+  description: string;
+  questions: ApiQuestionPayload[];
+};
+
+export type ApiQuestionPayload = {
+  description: string;
+  question_type: "single_choice" | "multiple_choices" | "text";
+  choices: { description: string }[];
+};
+
+export type ApiQuestion = {
+  id: number;
+  description: string;
+  question_type: "single_choice" | "multiple_choices" | "text";
+  choices: { id: number; description: string }[];
+};
+
+export type ApiPollList = ApiPoll[];
+
 export type ApiPoll = {
+  id: number;
   title: string;
   description: string;
-  questions: {
-    id: number;
-    description: string;
-    type: "single_choice" | "multiple_choices" | "text";
-    choices: { id: number; description: string }[];
-  }[];
+  questions: ApiQuestion[];
 };
 
 export type ApiPollAnswer = {
@@ -26,7 +44,7 @@ export type ApiPollResults = {
   questions: {
     id: number;
     description: string;
-    type: "single_choice" | "multiple_choices" | "text";
+    question_type: "single_choice" | "multiple_choices" | "text";
     answers: {
       name: string;
       choices?: { id: number; description: string }[];
@@ -38,13 +56,14 @@ export type ApiPollResults = {
 // MOCKS
 
 export const poll_1: ApiPoll = {
+  id: 1,
   title: "Equipement saison 2020-2021",
   description: "Sondage pour les maillots de la prochaine saison",
   questions: [
     {
       id: 1,
       description: "Quelle est ta taille de maillot ?",
-      type: "single_choice",
+      question_type: "single_choice",
       choices: [
         { id: 1, description: "XS" },
         { id: 2, description: "S" },
@@ -56,7 +75,7 @@ export const poll_1: ApiPoll = {
     {
       id: 2,
       description: "Quelles sont tes marques préférées ?",
-      type: "multiple_choices",
+      question_type: "multiple_choices",
       choices: [
         { id: 1, description: "Nike" },
         { id: 2, description: "Adidas" },
@@ -67,20 +86,21 @@ export const poll_1: ApiPoll = {
     {
       id: 3,
       description: "Quel numéro de maillot souhaites-tu ?",
-      type: "text",
+      question_type: "text",
       choices: [],
     },
   ],
 };
 
 export const poll_2: ApiPoll = {
+  id: 2,
   title: "Ton sport !",
   description: "Voici mon deuxième sondage sur les sports préférés",
   questions: [
     {
       id: 1,
       description: "Quel est ton sport préféré ?",
-      type: "single_choice",
+      question_type: "single_choice",
       choices: [
         { id: 1, description: "Football" },
         { id: 2, description: "Handball" },
@@ -98,7 +118,7 @@ export const poll_results_1: ApiPollResults = {
     {
       id: 1,
       description: "Quelle est ta taille de maillot ?",
-      type: "single_choice",
+      question_type: "single_choice",
       answers: [
         { name: "Arthur", choices: [{ id: 3, description: "M" }] },
         { name: "Julie", choices: [{ id: 3, description: "M" }] },
@@ -124,7 +144,7 @@ export const poll_results_1: ApiPollResults = {
     {
       id: 2,
       description: "Quelles sont tes marques préférées ?",
-      type: "multiple_choices",
+      question_type: "multiple_choices",
       answers: [
         {
           name: "Arthur",
@@ -231,7 +251,7 @@ export const poll_results_1: ApiPollResults = {
     {
       id: 3,
       description: "Quel numéro de maillot souhaites-tu ?",
-      type: "text",
+      question_type: "text",
       answers: [
         { name: "Arthur", text: "23" },
         { name: "Julie", text: "21" },
@@ -264,7 +284,7 @@ export const poll_results_2: ApiPollResults = {
     {
       id: 1,
       description: "Quel est ton sport préféré ?",
-      type: "single_choice",
+      question_type: "single_choice",
       answers: [
         { name: "Arthur", choices: [{ id: 3, description: "Basketball" }] },
         { name: "Julie", choices: [{ id: 4, description: "Baseball" }] },

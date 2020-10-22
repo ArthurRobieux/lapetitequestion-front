@@ -77,7 +77,7 @@ export const PollResults = ({ match }: RouteComponentProps<{ id: string }>) => {
                     <div className={styles.answerContainer}>
                       <div className={styles.answerName}>{answer.name}</div>
                       <div className={styles.answer}>
-                        {question.type === "text"
+                        {question.question_type === "text"
                           ? answer.text
                           : answer.choices!.map((choice) => (
                               <div>{choice.description}</div>

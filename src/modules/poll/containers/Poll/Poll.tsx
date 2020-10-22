@@ -2,12 +2,7 @@ import React, { useState, useEffect } from "react";
 import { RouteComponentProps, NavLink } from "react-router-dom";
 
 import { Button } from "../../../common-ui";
-import {
-  poll_1,
-  poll_2,
-  ApiPoll,
-  ApiPollAnswer,
-} from "../../../api-client/mocks";
+import { ApiPoll, ApiPollAnswer } from "../../../api-client/mocks";
 
 import cristiano from "../../../../assets/img/cristiano.jpg";
 import logoSportEasy from "../../../../assets/img/logoSportEasy.svg";
@@ -18,11 +13,10 @@ import { Choice } from "../../components/Choice";
 import { ProgressBar } from "../../components/ProgressBar";
 
 import styles from "./styles.module.scss";
+import { apiClient } from "../../../api-client";
 
 export const Poll = ({ match }: RouteComponentProps<{ id: string }>) => {
-  let pollData = null as ApiPoll | null;
-  if (match.params.id === "1") pollData = poll_1;
-  if (match.params.id === "2") pollData = poll_2;
+  const [pollData, setPollData] = useState(null as ApiPoll | null);
 
   const [currentQuestion, setCurrentQuestion] = useState(-1);
   const [form, setForm] = useState({
@@ -31,16 +25,19 @@ export const Poll = ({ match }: RouteComponentProps<{ id: string }>) => {
   } as ApiPollAnswer);
 
   useEffect(() => {
-    const f = form;
-    if (pollData) {
-      pollData.questions.forEach((question) => {
-        if (question.type === "text")
+    apiClient.lpq.getPoll({ id: match.params.id }).then((response) => {
+      setPollData(response);
+      const f = form;
+
+      response.questions.forEach((question) => {
+        if (question.question_type === "text")
           f.questions.push({ id: question.id, text: "" });
         else f.questions.push({ id: question.id, choice_ids: [] });
       });
-    }
-    setForm(f);
-  }, [pollData]);
+
+      setForm(f);
+    });
+  }, []);
 
   if (!pollData) {
     return (
@@ -109,7 +106,7 @@ export const Poll = ({ match }: RouteComponentProps<{ id: string }>) => {
               </>
             ))}
           </div>
-          {pollData!.questions[currentQuestion].type === "text" && (
+          {pollData!.questions[currentQuestion].question_type === "text" && (
             <textarea
               className={styles.textAreaInput}
               value={form.questions[currentQuestion].text}

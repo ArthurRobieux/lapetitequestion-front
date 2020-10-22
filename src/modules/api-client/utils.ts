@@ -17,10 +17,10 @@ const generateMethod = (host: string, method: string) => (
     json?: boolean;
   }
 ) => {
-  const { version, json } = { json: true, version: "2.1", ...options };
+  const { json } = { json: true, ...options };
   if (json && payload) {
     const body = JSON.stringify(payload);
-    return fetch(`${host}v${version}/${path}`, {
+    return fetch(`${host}${path}`, {
       method,
       body,
     }).then(validateResponse);
@@ -30,12 +30,12 @@ const generateMethod = (host: string, method: string) => (
     Object.keys(payload).forEach((key: string) => {
       body.append(key, payload[key]);
     });
-    return fetch(`${host}v${version}/${path}`, {
+    return fetch(`${host}${path}`, {
       method,
       body,
     }).then(validateResponse);
   }
-  return fetch(`${host}v${version}/${path}`, {
+  return fetch(`${host}${path}`, {
     method,
   }).then(validateResponse);
 };
