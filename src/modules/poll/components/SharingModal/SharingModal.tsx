@@ -6,11 +6,13 @@ import styles from "./styles.module.scss";
 export type SharingModalProps = {
   modalIsOpen: boolean;
   setModalIsOpen: (b: boolean) => void;
+  pollId: number | null;
 };
 
 export const SharingModal = ({
   modalIsOpen,
   setModalIsOpen,
+  pollId,
 }: SharingModalProps) => {
   const [linkCopied, setLinkCopied] = useState(false);
 
@@ -35,9 +37,11 @@ export const SharingModal = ({
         sondage vous a été envoyé.
       </div>
       <CopyText
-        text="www.baguettetordue.fr/poll/1/"
+        text={`${window.location.origin}/poll/${pollId}/`}
         copied={linkCopied}
-        copyToClipboard={() => copyToClipboard("www.baguettetordue.fr/poll/1/")}
+        copyToClipboard={() =>
+          copyToClipboard(`${window.location.origin}/poll/${pollId}/`)
+        }
         fontWeight="normal"
         nude
       />

@@ -28,6 +28,7 @@ export const PollCreate = () => {
   } as ApiPollCreatePayload);
   const [loading, setLoading] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [pollId, setPollId] = useState(null);
 
   const onSubmit = () => {
     console.log("form", form);
@@ -36,9 +37,10 @@ export const PollCreate = () => {
 
     apiClient.lpq
       .createPoll({ payload: form })
-      .then(() => {
+      .then((response) => {
         setLoading(false);
         setModalIsOpen(true);
+        setPollId(response);
       })
       .catch(() => setLoading(false));
   };
@@ -136,7 +138,11 @@ export const PollCreate = () => {
         )}
       </div>
 
-      <SharingModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
+      <SharingModal
+        modalIsOpen={modalIsOpen}
+        setModalIsOpen={setModalIsOpen}
+        pollId={pollId}
+      />
     </div>
   );
 };

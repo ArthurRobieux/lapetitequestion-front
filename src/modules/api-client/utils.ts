@@ -22,6 +22,10 @@ const generateMethod = (host: string, method: string) => (
     const body = JSON.stringify(payload);
     return fetch(`${host}${path}`, {
       method,
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      }),
       body,
     }).then(validateResponse);
   }
