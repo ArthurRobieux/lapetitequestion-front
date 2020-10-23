@@ -29,12 +29,12 @@ export type ApiPoll = {
   questions: ApiQuestion[];
 };
 
-export type ApiPollAnswer = {
+export type ApiPollAnswerPayload = {
   name: string;
-  questions: {
-    id: number;
-    choice_ids?: number[];
+  answers: {
+    question_id: number;
     text?: string;
+    choice_ids?: number[];
   }[];
 };
 

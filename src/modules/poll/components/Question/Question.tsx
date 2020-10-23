@@ -55,7 +55,11 @@ export const Question = ({
               (c) => c.value === question.question_type
             )}
             onChange={(evt) =>
-              setQuestion({ ...question, question_type: evt.value })
+              setQuestion({
+                ...question,
+                question_type: evt.value,
+                choices: evt.value === "text" ? [] : question.choices,
+              })
             }
             placeholder="Type"
             clearable={false}

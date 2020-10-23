@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { RouteComponentProps, NavLink } from "react-router-dom";
 
 import { Button } from "../../../common-ui";
-import { ApiPoll, ApiPollAnswer } from "../../../api-client/mocks";
+import { ApiPoll, ApiPollAnswerPayload } from "../../../api-client/mocks";
 
 import cristiano from "../../../../assets/img/cristiano.jpg";
 import logoSportEasy from "../../../../assets/img/logoSportEasy.svg";
@@ -20,9 +20,9 @@ export const Poll = ({ match }: RouteComponentProps<{ id: string }>) => {
 
   const [currentQuestion, setCurrentQuestion] = useState(-1);
   const [form, setForm] = useState({
-    questions: [],
+    answers: [],
     name: "",
-  } as ApiPollAnswer);
+  } as ApiPollAnswerPayload);
 
   useEffect(() => {
     apiClient.lpq.getPoll({ id: match.params.id }).then((response) => {
@@ -30,14 +30,25 @@ export const Poll = ({ match }: RouteComponentProps<{ id: string }>) => {
       const f = form;
 
       response.questions.forEach((question) => {
-        if (question.question_type === "text")
-          f.questions.push({ id: question.id, text: "" });
-        else f.questions.push({ id: question.id, choice_ids: [] });
+        f.answers.push({
+          question_id: question.id,
+          choice_ids: [],
+          text: "",
+        });
       });
 
       setForm(f);
     });
   }, []);
+
+  const onSubmit = () => {
+    if (pollData) {
+      console.log("form", form);
+      apiClient.lpq
+        .createAnswers({ id: pollData!.id, payload: form })
+        .then(() => setCurrentQuestion(currentQuestion + 1));
+    }
+  };
 
   if (!pollData) {
     return (
@@ -95,7 +106,7 @@ export const Poll = ({ match }: RouteComponentProps<{ id: string }>) => {
           </div>
           <div className={styles.choices}>
             {pollData.questions[currentQuestion].choices.map((choice) => (
-              <>
+              <div key={choice.id}>
                 <Choice
                   form={form}
                   setForm={setForm}
@@ -103,16 +114,16 @@ export const Poll = ({ match }: RouteComponentProps<{ id: string }>) => {
                   choice={choice}
                   currentQuestion={currentQuestion}
                 />
-              </>
+              </div>
             ))}
           </div>
           {pollData!.questions[currentQuestion].question_type === "text" && (
             <textarea
               className={styles.textAreaInput}
-              value={form.questions[currentQuestion].text}
+              value={form.answers[currentQuestion].text}
               onChange={(evt) => {
                 const f = { ...form };
-                f.questions[currentQuestion].text = evt.target.value;
+                f.answers[currentQuestion].text = evt.target.value;
                 setForm(f);
               }}
               placeholder="Réponse..."
@@ -129,15 +140,25 @@ export const Poll = ({ match }: RouteComponentProps<{ id: string }>) => {
                 />
               </div>
             )}
-            <Button
-              description="Continuer"
-              onClick={() => setCurrentQuestion(currentQuestion + 1)}
-              disabled={
-                form.questions[currentQuestion].choice_ids
-                  ? !form.questions[currentQuestion].choice_ids!.length
-                  : !form.questions[currentQuestion].text
-              }
-            />
+            {currentQuestion === pollData.questions.length - 1 ? (
+              <Button
+                description="Terminer"
+                onClick={onSubmit}
+                disabled={
+                  !form.answers[currentQuestion].choice_ids!.length &&
+                  !form.answers[currentQuestion].text
+                }
+              />
+            ) : (
+              <Button
+                description="Continuer"
+                onClick={() => setCurrentQuestion(currentQuestion + 1)}
+                disabled={
+                  !form.answers[currentQuestion].choice_ids!.length &&
+                  !form.answers[currentQuestion].text
+                }
+              />
+            )}
           </div>
           <ProgressBar
             value={currentQuestion + 1}

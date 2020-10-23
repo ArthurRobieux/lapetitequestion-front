@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "./styles.module.scss";
 import { Checkbox, RadioButton } from "../../../common-ui";
-import { ApiPollAnswer, ApiPoll } from "../../../api-client/mocks";
+import { ApiPollAnswerPayload, ApiPoll } from "../../../api-client/mocks";
 
 export type ChoiceProps = {
-  form: ApiPollAnswer;
-  setForm: (f: ApiPollAnswer) => void;
+  form: ApiPollAnswerPayload;
+  setForm: (f: ApiPollAnswerPayload) => void;
   pollData: ApiPoll;
   choice: {
     id: number;
@@ -30,18 +30,18 @@ export const Choice = ({
         if (
           pollData!.questions[currentQuestion].question_type === "single_choice"
         ) {
-          f.questions[currentQuestion].choice_ids = [];
+          f.answers[currentQuestion].choice_ids = [];
         }
 
-        if (f.questions[currentQuestion].choice_ids!.includes(choice.id)) {
-          const index = f.questions[currentQuestion].choice_ids!.indexOf(
+        if (f.answers[currentQuestion].choice_ids!.includes(choice.id)) {
+          const index = f.answers[currentQuestion].choice_ids!.indexOf(
             choice.id
           );
           if (index > -1) {
-            f.questions[currentQuestion].choice_ids!.splice(index, 1);
+            f.answers[currentQuestion].choice_ids!.splice(index, 1);
           }
         } else {
-          f.questions[currentQuestion].choice_ids!.push(choice.id);
+          f.answers[currentQuestion].choice_ids!.push(choice.id);
         }
         setForm(f);
       }}
@@ -49,7 +49,7 @@ export const Choice = ({
       {pollData!.questions[currentQuestion].question_type ===
         "multiple_choices" && (
         <Checkbox
-          checked={form.questions[currentQuestion].choice_ids!.includes(
+          checked={form.answers[currentQuestion].choice_ids!.includes(
             choice.id
           )}
         />
@@ -57,7 +57,7 @@ export const Choice = ({
       {pollData!.questions[currentQuestion].question_type ===
         "single_choice" && (
         <RadioButton
-          checked={form.questions[currentQuestion].choice_ids!.includes(
+          checked={form.answers[currentQuestion].choice_ids!.includes(
             choice.id
           )}
         />

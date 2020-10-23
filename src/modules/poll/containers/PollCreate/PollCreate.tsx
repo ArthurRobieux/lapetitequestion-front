@@ -32,8 +32,6 @@ export const PollCreate = () => {
   const [pollId, setPollId] = useState(null);
 
   const onSubmit = () => {
-    console.log("form", form);
-
     setLoading(true);
 
     apiClient.lpq
