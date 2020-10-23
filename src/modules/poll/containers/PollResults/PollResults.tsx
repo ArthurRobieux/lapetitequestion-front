@@ -1,34 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { RouteComponentProps, NavLink } from "react-router-dom";
 
 import styles from "./styles.module.scss";
 import { Button } from "../../../common-ui";
-import {
-  poll_results_1,
-  poll_results_2,
-  poll_1,
-  poll_2,
-  ApiPoll,
-  ApiPollResults,
-} from "../../../api-client/mocks";
+import { ApiPoll } from "../../../api-client/mocks";
 
 import logoSportEasy from "../../../../assets/img/logoSportEasy.svg";
 
 import { PollLayout } from "../PollLayout";
+import { apiClient } from "../../../api-client";
 
 export const PollResults = ({ match }: RouteComponentProps<{ id: string }>) => {
-  let pollResultsData = null as ApiPollResults | null;
-  let pollData = null as ApiPoll | null;
-  if (match.params.id === "1") {
-    pollData = poll_1;
-    pollResultsData = poll_results_1;
-  }
-  if (match.params.id === "2") {
-    pollData = poll_2;
-    pollResultsData = poll_results_2;
-  }
+  const [pollData, setPollData] = useState(null as ApiPoll | null);
 
-  if (!pollResultsData || !pollData) {
+  useEffect(() => {
+    apiClient.lpq.getPoll({ id: match.params.id }).then((response) => {
+      setPollData(response);
+    });
+  }, []);
+
+  if (!pollData) {
     return (
       <PollLayout>
         Ce sondage n'existe pas.
@@ -46,13 +37,11 @@ export const PollResults = ({ match }: RouteComponentProps<{ id: string }>) => {
       </div>
       <div className={styles.formContainer}>
         <div className={styles.block}>
-          <div className={styles.pollTitle}>{pollResultsData.title}</div>
-          <div className={styles.pollDescription}>
-            {pollResultsData.description}
-          </div>
+          <div className={styles.pollTitle}>{pollData.title}</div>
+          <div className={styles.pollDescription}>{pollData.description}</div>
           <div className={styles.pollSeparator} />
           <div>
-            {pollResultsData.questions.map((question, index) => (
+            {pollData.questions.map((question, index) => (
               <div className={styles.question}>
                 <div>
                   {index + 1} : {question.description}
@@ -63,7 +52,7 @@ export const PollResults = ({ match }: RouteComponentProps<{ id: string }>) => {
                       {choice.description} -{" "}
                       {Math.round(
                         (question.answers.filter((answer) =>
-                          answer.choices!.find((c) => c.id === choice.id)
+                          answer.choices!.find((c) => c.choice_id === choice.id)
                         ).length /
                           question.answers.length) *
                           100
@@ -79,8 +68,8 @@ export const PollResults = ({ match }: RouteComponentProps<{ id: string }>) => {
                       <div className={styles.answer}>
                         {question.question_type === "text"
                           ? answer.text
-                          : answer.choices!.map((choice) => (
-                              <div>{choice.description}</div>
+                          : answer.choices!.map((choice_id) => (
+                              <div>{choice_id.choice_id}</div>
                             ))}
                       </div>
                     </div>

@@ -18,6 +18,11 @@ export type ApiQuestion = {
   description: string;
   question_type: "single_choice" | "multiple_choices" | "text";
   choices: { id: number; description: string }[];
+  answers: {
+    name: string;
+    text?: string;
+    choices?: { choice_id: number }[];
+  }[];
 };
 
 export type ApiPollList = ApiPoll[];
@@ -71,6 +76,7 @@ export const poll_1: ApiPoll = {
         { id: 4, description: "L" },
         { id: 5, description: "XL" },
       ],
+      answers: [],
     },
     {
       id: 2,
@@ -82,12 +88,14 @@ export const poll_1: ApiPoll = {
         { id: 3, description: "Puma" },
         { id: 4, description: "Kipsta" },
       ],
+      answers: [],
     },
     {
       id: 3,
       description: "Quel numéro de maillot souhaites-tu ?",
       question_type: "text",
       choices: [],
+      answers: [],
     },
   ],
 };
@@ -107,6 +115,7 @@ export const poll_2: ApiPoll = {
         { id: 3, description: "Basketball" },
         { id: 4, description: "Baseball" },
       ],
+      answers: [],
     },
   ],
 };
