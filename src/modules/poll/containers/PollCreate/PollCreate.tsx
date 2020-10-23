@@ -26,6 +26,7 @@ export const PollCreate = () => {
       },
     ],
   } as ApiPollCreatePayload);
+  const [formErrors, setFormErrors] = useState({} as { [k: string]: any });
   const [loading, setLoading] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [pollId, setPollId] = useState(null);
@@ -42,7 +43,10 @@ export const PollCreate = () => {
         setModalIsOpen(true);
         setPollId(response);
       })
-      .catch(() => setLoading(false));
+      .catch((response) => {
+        setFormErrors(response);
+        setLoading(false);
+      });
   };
 
   return (
@@ -64,7 +68,12 @@ export const PollCreate = () => {
               value={form.title}
               onChange={(evt) => setForm({ ...form, title: evt.target.value })}
             />
+
+            {formErrors.title && (
+              <div className={styles.error}>{formErrors.title}</div>
+            )}
           </div>
+
           <div className={styles.emailContainer}>
             <div className={styles.emailLabel}>Ton email : </div>
 
@@ -83,6 +92,9 @@ export const PollCreate = () => {
             }
             placeholder="Ajouter une description"
           />
+          {formErrors.description && (
+            <div className={styles.error}>{formErrors.description}</div>
+          )}
         </div>
         {form.questions.map((question, index) => (
           <div className={styles.block}>
@@ -100,6 +112,7 @@ export const PollCreate = () => {
                   questions: R.assocPath([index], evt, form.questions),
                 })
               }
+              errors={formErrors.questions && formErrors.questions[index]}
             />
           </div>
         ))}

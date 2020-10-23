@@ -15,6 +15,7 @@ export type QuestionProps = {
   onDelete: () => void;
   question: ApiQuestionPayload;
   setQuestion: (q: ApiQuestionPayload) => void;
+  errors: { [k: string]: any };
 };
 
 export const Question = ({
@@ -22,12 +23,15 @@ export const Question = ({
   onDelete,
   question,
   setQuestion,
+  errors,
 }: QuestionProps) => {
   const choiceOptions = [
     { value: "single_choice", label: "Choix simple" },
     { value: "multiple_choices", label: "Choix multiples" },
     { value: "text", label: "Réponse libre" },
   ];
+
+  console.log("errors", errors);
 
   return (
     <div>
@@ -41,6 +45,7 @@ export const Question = ({
             }
             maxWidth
             placeholder="Ta question..."
+            error={errors && errors.description}
           />
         </div>
         <div className={styles.questionType}>
@@ -57,6 +62,10 @@ export const Question = ({
           />
         </div>
       </div>
+
+      {errors && errors.description && (
+        <div className={styles.error}>{errors.description}</div>
+      )}
 
       {(question.question_type === "single_choice" ||
         question.question_type === "multiple_choices") && (
@@ -79,7 +88,18 @@ export const Question = ({
                   }}
                   placeholder={`Choix ${index + 1}`}
                   maxWidth
+                  error={
+                    errors &&
+                    errors.choices &&
+                    errors.choices[index] &&
+                    errors.choices[index].description
+                  }
                 />
+                {errors && errors.choices && errors.choices[index] && (
+                  <div className={styles.error}>
+                    {errors.choices[index].description}
+                  </div>
+                )}
               </div>
             </div>
           ))}

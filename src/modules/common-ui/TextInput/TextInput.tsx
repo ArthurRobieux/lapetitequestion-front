@@ -10,6 +10,7 @@ export type TextInputProps = {
   noBorder?: boolean;
   maxWidth?: boolean;
   placeholder?: string;
+  error?: boolean;
 };
 
 export const TextInput = ({
@@ -19,6 +20,7 @@ export const TextInput = ({
   noBorder,
   maxWidth,
   placeholder,
+  error = false,
 }: TextInputProps) => {
   return (
     <div className={styles.textInputContainer}>
@@ -26,6 +28,7 @@ export const TextInput = ({
       <input
         className={classnames(styles.textInput, {
           [styles.noBorder]: noBorder,
+          [styles.error]: error,
           [styles.maxWidth]: maxWidth,
         })}
         type="text"
