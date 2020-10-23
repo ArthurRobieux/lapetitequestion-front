@@ -12,6 +12,7 @@ export type ButtonProps = {
   maxWidth?: boolean;
   disabled?: boolean;
   nude?: boolean;
+  className?: string;
 };
 
 export const Button = ({
@@ -22,13 +23,14 @@ export const Button = ({
   maxWidth,
   disabled,
   nude,
+  className,
 }: ButtonProps) => {
   if (onClick) {
     return (
       <button
         type="button"
         onClick={onClick}
-        className={classnames(styles.button, {
+        className={classnames(className, styles.button, {
           [styles.invert]: invert,
           [styles.maxWidth]: maxWidth,
           [styles.disabled]: disabled,
@@ -42,7 +44,7 @@ export const Button = ({
     return (
       <NavLink
         to={to}
-        className={classnames(styles.button, {
+        className={classnames(className, styles.button, {
           [styles.invert]: invert,
           [styles.maxWidth]: maxWidth,
           [styles.disabled]: disabled,

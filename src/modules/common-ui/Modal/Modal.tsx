@@ -10,6 +10,7 @@ export type ModalProps = {
   modalIsOpen: boolean;
   width?: string;
   fullSize?: boolean;
+  closable?: boolean;
 };
 
 export const Modal = ({
@@ -18,6 +19,7 @@ export const Modal = ({
   setModalIsOpen,
   modalIsOpen,
   width = "35%",
+  closable = true,
 }: ModalProps) => {
   const customStyles = {
     content: {
@@ -40,12 +42,17 @@ export const Modal = ({
       style={customStyles}
       contentLabel="Modal"
       ariaHideApp={false}
+      shouldCloseOnOverlayClick={closable}
     >
       <div className={styles.modal}>
         <div className={styles.header}>
           <div className={styles.hiddenBox} />
           <div className={styles.title}>{title}</div>
-          <CloseButton action={() => setModalIsOpen(false)} />
+          {closable ? (
+            <CloseButton action={() => setModalIsOpen(false)} />
+          ) : (
+            <div className={styles.hiddenBox} />
+          )}
         </div>
 
         <div className={styles.modalContent}>{children}</div>

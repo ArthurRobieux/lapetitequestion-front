@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, CopyText } from "../../../common-ui";
+import { Modal, CopyText, Button } from "../../../common-ui";
 
 import styles from "./styles.module.scss";
 
@@ -31,6 +31,7 @@ export const SharingModal = ({
       modalIsOpen={modalIsOpen}
       setModalIsOpen={setModalIsOpen}
       title="Envoyer le sondage"
+      closable={false}
     >
       <div className={styles.message}>
         Votre sondage a bien été créé. Un email de confirmation avec le lien du
@@ -44,6 +45,17 @@ export const SharingModal = ({
         }
         fontWeight="normal"
         nude
+      />
+      <Button
+        to={`/poll/${pollId}/`}
+        description="Aller au sondage"
+        className={styles.button}
+      />
+      <Button
+        to="/"
+        description="Retour au menu"
+        className={styles.button}
+        invert
       />
     </Modal>
   );
